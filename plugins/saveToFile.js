@@ -4,12 +4,8 @@ const crypto = require('crypto');
 
 
 module.exports = {
-	init: () => {
-		console.log('INIT')
-	},
-    beforeSend: (req, res, next) => {
+	beforeSend: (req, res, next) => {
         let parsed = url.parse(req.prerender.url);
-
 
         // skip nulled files
         if (!parsed.hostname) {
