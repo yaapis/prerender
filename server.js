@@ -1,11 +1,15 @@
 #!/usr/bin/env node
-var prerender = require('./lib');
+let prerender = require('./lib');
+let saveToFile = require('./plugins/saveToFile');
 
-var server = prerender();
+let server = prerender({
+    logRequests: true
+});
 
 server.use(prerender.sendPrerenderHeader());
 // server.use(prerender.blockResources());
-server.use(prerender.removeScriptTags());
-server.use(prerender.httpHeaders());
+// server.use(prerender.removeScriptTags());
+server.use(saveToFile);
+
 
 server.start();
